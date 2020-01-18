@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_18_145019) do
+ActiveRecord::Schema.define(version: 2020_01_18_150210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "branches", force: :cascade do |t|
+    t.bigint "number", null: false
+    t.string "area"
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_branches_on_company_id"
+    t.index ["number"], name: "index_branches_on_number", unique: true
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name", null: false
@@ -24,4 +32,5 @@ ActiveRecord::Schema.define(version: 2020_01_18_145019) do
     t.index ["name"], name: "index_companies_on_name", unique: true
   end
 
+  add_foreign_key "branches", "companies", on_delete: :cascade
 end
