@@ -1,0 +1,30 @@
+AllCops:
+  TargetRubyVersion: 2.7.0
+  DisplayCopNames: true
+  CacheRootDirectory: 'tmp'
+  Exclude:
+    - 'db/*'
+    - 'db/**/*'
+    - 'config/*'
+    - 'config/**/*'
+    - 'tmp/**/*'
+    - 'bin/**/*'
+    - 'cable/**/*'
+    - 'chef/**/*'
+    - 'coverage/**/*'
+    - 'log/**/*'
+    - 'public/**/*'
+    - 'node_modules/**/*'
+    - 'spec/support/*'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+    - 'Gemfile'
+    - 'Guardfile'
+    - 'Rakefile'
+    - 'config.ru'
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
