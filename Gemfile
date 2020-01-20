@@ -21,6 +21,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 # include HAML
 gem 'hamlit'
+# Bootstrap
+gem 'bootstrap-sass'
+# JQuery
+gem 'jquery-rails'
 # add Angular
 gem 'angularjs-rails'
 gem 'lodash-rails', '3.10.0'
