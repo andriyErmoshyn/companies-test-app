@@ -19,6 +19,10 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+# add Angular
+gem 'angularjs-rails'
+gem 'lodash-rails', '3.10.0'
+gem 'angular-rails-templates'
 
 group :development, :test do
   gem 'pry-rails'
