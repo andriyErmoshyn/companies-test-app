@@ -15,9 +15,9 @@
           %button.btn.btn-primary(role='button' data-toggle='collapse' href=".collapseExample-{{company.id}}"
                                   aria-expanded='false' aria-controls='collapseExample')
             Branches
-          %button.btn.btn-default Archive
-          %button.btn.btn-warning Edit
-          %button.btn.btn-danger Delete
+          %button.btn.btn-default(ng-click='archive(company)') Archive
+          %button.btn.btn-warning(ng-click='updateCompany(company)') Edit
+          %button.btn.btn-danger(ng-click='deleteCompany(company)') Delete
       %tr(ng-if="company.branches.length" class="collapse collapseExample-{{company.id}}")
         %th.col-xs-6(colspan='2')
           Number

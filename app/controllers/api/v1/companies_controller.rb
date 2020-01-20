@@ -4,7 +4,7 @@ module Api
   module V1
     class CompaniesController < ApplicationController
       def index
-        companies = Company.all
+        companies = Company.not_archived
         json_response companies
       end
 
@@ -35,7 +35,7 @@ module Api
 
       def update_company_params
         params.require(:company).permit(
-          :id, :name, :description, :address
+          :id, :name, :description, :address, :archived
         )
       end
     end

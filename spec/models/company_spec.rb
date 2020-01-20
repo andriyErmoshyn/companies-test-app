@@ -10,4 +10,10 @@ RSpec.describe Company, type: :model do
     it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
     it { is_expected.to validate_presence_of(:name) }
   end
+
+  describe 'not_archived scope' do
+    it 'does not include arhived companies' do
+      expect(Company.not_archived.to_sql).to eq Company.where.not(archived: true).to_sql
+    end
+  end
 end
