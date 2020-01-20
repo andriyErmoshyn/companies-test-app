@@ -1,0 +1,32 @@
+%div
+  %table.table.table-bordered
+    %thead
+      %tr.text-center
+        %th.col-xs-2.text-center Name
+        %th.col-xs-3.text-center Description
+        %th.col-xs-3.text-center Address
+        %th.col-xs-4.text-center Actions
+    %tbody(ng-repeat='company in companies')
+      %tr
+        %td.col-xs-2 {{company.name}}
+        %td.col-xs-3 {{company.description}}
+        %td.col-xs-3 {{company.address}}
+        %td.col-xs-4.text-right
+          %button.btn.btn-primary(role='button' data-toggle='collapse' href=".collapseExample-{{company.id}}"
+                                  aria-expanded='false' aria-controls='collapseExample')
+            Branches
+          %button.btn.btn-default Archive
+          %button.btn.btn-warning Edit
+          %button.btn.btn-danger Delete
+      %tr(ng-if="company.branches.length" class="collapse collapseExample-{{company.id}}")
+        %th.col-xs-6(colspan='2')
+          Number
+        %th.col-xs-6(colspan='2')
+          Area
+      %tr(ng-repeat='branch in company.branches' data-company_id="{{company.id}}"
+          class="collapse collapseExample-{{company.id}}")
+        %td.col-xs-6(colspan='2') {{branch.number}}
+        %td.col-xs-3 {{branch.area}}
+        %td.col-xs-3.text-right
+          %button.btn.btn-warning Edit
+          %button.btn.btn-danger Delete
