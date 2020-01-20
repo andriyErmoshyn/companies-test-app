@@ -8,7 +8,7 @@ p 'Creating new data'
 100.times do
   company = Company.create(
       name: Faker::Company.name,
-      description: Faker::Lorem.sentences(number: 1),
+      description: Faker::Lorem.sentences(number: 1).join,
       address: Faker::Address.full_address
   )
 

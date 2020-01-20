@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :company do
     name         { Faker::Company.name }
-    description  { Faker::Lorem.sentences(number: 1) }
+    description  { Faker::Lorem.sentences(number: 1).join }
     address      { Faker::Address.full_address }
 
     trait :with_branches do
