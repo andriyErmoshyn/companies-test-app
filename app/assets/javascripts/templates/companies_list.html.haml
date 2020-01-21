@@ -28,5 +28,5 @@
         %td.col-xs-6(colspan='2') {{branch.number}}
         %td.col-xs-3 {{branch.area}}
         %td.col-xs-3.text-right
-          %button.btn.btn-warning Edit
-          %button.btn.btn-danger Delete
+          %button.btn.btn-warning(ng-click='updateBranch(company, branch)') Edit
+          %button.btn.btn-danger(ng-click='deleteBranch(company, branch)') Delete
