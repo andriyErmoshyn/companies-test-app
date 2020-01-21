@@ -29,6 +29,9 @@ gem 'jquery-rails'
 gem 'angularjs-rails'
 gem 'lodash-rails', '3.10.0'
 gem 'angular-rails-templates'
+# Search with Ransack
+gem 'ransack'
+
 
 group :development, :test do
   gem 'pry-rails'
