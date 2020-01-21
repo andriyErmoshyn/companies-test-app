@@ -2,5 +2,5 @@
 
 class Branch < ApplicationRecord
   belongs_to :company
-  validates :number, presence: true, uniqueness: true
+  validates :number, presence: true, uniqueness: { scope: :company_id }
 end
