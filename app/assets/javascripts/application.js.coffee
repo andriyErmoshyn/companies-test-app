@@ -22,5 +22,5 @@ angular.module('companiesApp', [
   'companies.request_svc',
   'templates',
   'ngAnimate',
-  'mgcrea.ngStrap'
+  "mgcrea.ngStrap.modal"
 ])

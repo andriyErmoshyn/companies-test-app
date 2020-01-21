@@ -1,0 +1,25 @@
+-# frozen_string_literal: true
+.modal.center
+  .modal-dialog.modal-md
+    .modal-content
+      .modal-header
+        .col-xs-10
+          .text-semi.text-head Edit company
+      .modal-body
+        %form.form-horizontal
+          .form-group
+            %label.col-xs-2 Name
+            .col-xs-10
+              %input.form-control.sm(ng-model="company.name" required name="name")
+          .form-group
+            %label.col-xs-2 Description
+            .col-xs-10
+              %textarea.form-control.sm(ng-model="company.description" name="description")
+          .form-group
+            %label.col-xs-2 Address
+            .col-xs-10
+              %input.form-control.sm(ng-model="company.address" name="address")
+          .form-group
+            .col-xs-offset-2.col-xs-10
+              %button.btn.btn-default(ng-click='$hide()') Cancel
+              %button.btn.btn-primary(ng-click='updateCompany(company)') Update

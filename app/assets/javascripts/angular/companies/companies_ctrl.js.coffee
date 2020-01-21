@@ -1,6 +1,6 @@
 angular.module("companies.company", [])
 
-companiesCtrl = ($scope, Request) ->
+companiesCtrl = ($scope, $modal, Request) ->
   Request.all('companies').getList().then (companies) ->
     $scope.companies = companies
 
@@ -18,6 +18,7 @@ companiesCtrl = ($scope, Request) ->
       address: company.address
     }
     request.put().then (response) ->
+      $scope.editCompanyModal.hide()
 
   $scope.deleteCompany = (company) ->
     request = Request.one('companies', company.id)
@@ -37,8 +38,14 @@ companiesCtrl = ($scope, Request) ->
     request.remove().then ->
       company.branches.splice(company.branches.indexOf(branch), 1)
 
+  $scope.openEditCompanyModal = (company) ->
+    new_scope = $scope.$new()
+    new_scope.company = company
+
+    $scope.editCompanyModal = $modal(scope: new_scope, template: 'edit_company_form.html', backdrop: false, container: 'body')
+
 angular
   .module "companies.company"
     .controller "companiesCtrl", [
-      '$scope', 'Request', companiesCtrl
+      '$scope', '$modal', 'Request', companiesCtrl
     ]
