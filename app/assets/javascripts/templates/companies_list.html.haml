@@ -13,7 +13,7 @@
         %td.col-xs-3 {{company.address}}
         %td.col-xs-4.text-right
           %button.btn.btn-primary(role='button' data-toggle='collapse' href=".collapseExample-{{company.id}}"
-                                  aria-expanded='false' aria-controls='collapseExample')
+                                  aria-expanded='false' aria-controls='collapseExample' ng-if='company.branches.length')
             Branches
           %button.btn.btn-default(ng-click='archive(company)') Archive
           %button.btn.btn-warning(ng-click='openEditCompanyModal(company)') Edit

@@ -4,6 +4,12 @@ companiesCtrl = ($scope, $modal, Request) ->
   Request.all('companies').getList().then (companies) ->
     $scope.companies = companies
 
+  $scope.createCompany = (company) ->
+    request = Request.all('companies')
+    request.post(company).then (company) ->
+      $scope.companies.push(company)
+      $scope.newCompanyModal.hide()
+
   $scope.archive = (company) ->
     request = Request.one('companies', company.id)
     request.company = { archived: true }
@@ -38,6 +44,11 @@ companiesCtrl = ($scope, $modal, Request) ->
     request = Request.one('companies', company.id).one('branches', branch.id)
     request.remove().then ->
       company.branches.splice(company.branches.indexOf(branch), 1)
+
+  $scope.openNewCompanyModal = ->
+    new_scope = $scope.$new()
+    new_scope.company = {}
+    $scope.newCompanyModal = $modal(scope: new_scope, template: 'new_company_form.html', backdrop: false, container: 'body')
 
   $scope.openEditCompanyModal = (company) ->
     new_scope = $scope.$new()
