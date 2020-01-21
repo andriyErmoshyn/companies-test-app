@@ -15,18 +15,23 @@
           %button.btn.btn-primary(role='button' data-toggle='collapse' href=".collapseExample-{{company.id}}"
                                   aria-expanded='false' aria-controls='collapseExample' ng-if='company.branches.length')
             Branches
+          %button.btn.btn-info(ng-if='!company.branches.length' ng-click='openBranchModal(company, {}, "new_branch")')
+            New Branch
           %button.btn.btn-default(ng-click='archive(company)') Archive
           %button.btn.btn-warning(ng-click='openEditCompanyModal(company)') Edit
           %button.btn.btn-danger(ng-click='deleteCompany(company)') Delete
       %tr(ng-if="company.branches.length" class="collapse collapseExample-{{company.id}}")
         %th.col-xs-6(colspan='2')
           Number
-        %th.col-xs-6(colspan='2')
+        %th.col-xs-3
           Area
+        %th.col-xs-3.text-right
+          %button.btn.btn-info(ng-click='openBranchModal(company, {}, "new_branch")')
+            New Branch
       %tr(ng-repeat='branch in company.branches' data-company_id="{{company.id}}"
           class="collapse collapseExample-{{company.id}}")
         %td.col-xs-6(colspan='2') {{branch.number}}
         %td.col-xs-3 {{branch.area}}
         %td.col-xs-3.text-right
-          %button.btn.btn-warning(ng-click='openEditBranchModal(company, branch)') Edit
+          %button.btn.btn-warning(ng-click='openBranchModal(company, branch, "edit_branch")') Edit
           %button.btn.btn-danger(ng-click='deleteBranch(company, branch)') Delete

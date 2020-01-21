@@ -4,13 +4,13 @@
     .modal-content
       .modal-header
         .col-xs-10
-          .text-semi.text-head Edit brach
+          .text-semi.text-head {{title}}
       .modal-body
         %form.form-horizontal
           .form-group
             %label.col-xs-2 Number
             .col-xs-10
-              %input.form-control.sm(ng-model="branch.number" required name="number")
+              %input.form-control.sm(ng-model="branch.number" required name="number" type='number')
           .form-group
             %label.col-xs-2 Area
             .col-xs-10
@@ -18,4 +18,5 @@
           .form-group
             .col-xs-offset-2.col-xs-10
               %button.btn.btn-default(ng-click='$hide()') Cancel
-              %button.btn.btn-primary(ng-click='updateBranch(company, branch)') Update
+              %button.btn.btn-primary(ng-click='action=="new_branch" ? createBranch(company, branch) : updateBranch(company, branch)')
+                {{submitBtnText}}

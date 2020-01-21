@@ -31,20 +31,6 @@ companiesCtrl = ($scope, $modal, Request) ->
     request.remove().then ->
       $scope.companies.splice($scope.companies.indexOf(company), 1)
 
-  $scope.updateBranch = (company, branch) ->
-    request = Request.one('companies', company.id).one('branches', branch.id)
-    request.branch = {
-      number: branch.number,
-      area: branch.area
-    }
-    request.put().then (response) ->
-      $scope.editBranchModal.hide()
-
-  $scope.deleteBranch = (company, branch) ->
-    request = Request.one('companies', company.id).one('branches', branch.id)
-    request.remove().then ->
-      company.branches.splice(company.branches.indexOf(branch), 1)
-
   $scope.openNewCompanyModal = ->
     new_scope = $scope.$new()
     new_scope.company = {}
@@ -55,11 +41,39 @@ companiesCtrl = ($scope, $modal, Request) ->
     new_scope.company = company
     $scope.editCompanyModal = $modal(scope: new_scope, template: 'edit_company_form.html', backdrop: false, container: 'body')
 
-  $scope.openEditBranchModal = (company, branch) ->
+  $scope.createBranch = (company, branch) ->
+    request = Request.one('companies', company.id).all('branches')
+    request.post(branch).then (branch) ->
+      $scope.branchModal.hide()
+
+  $scope.updateBranch = (company, branch) ->
+    request = Request.one('companies', company.id).one('branches', branch.id)
+    request.branch = {
+      number: branch.number,
+      area: branch.area
+    }
+    request.put().then (response) ->
+      $scope.branchModal.hide()
+
+  $scope.deleteBranch = (company, branch) ->
+    request = Request.one('companies', company.id).one('branches', branch.id)
+    request.remove().then ->
+      company.branches.splice(company.branches.indexOf(branch), 1)
+
+  $scope.openBranchModal = (company, branch, action) ->
     new_scope = $scope.$new()
     new_scope.company = company
-    new_scope.branch = branch
-    $scope.editBranchModal = $modal(scope: new_scope, template: 'edit_branch_form.html', backdrop: false, container: 'body')
+    new_scope.action = action
+    if action == 'new_branch'
+      new_scope.branch = {}
+      new_scope.title = "Create a new branch for #{company.name}"
+      new_scope.submitBtnText = 'Create'
+    else
+      new_scope.branch = branch
+      new_scope.title = 'Edit branch'
+      new_scope.submitBtnText = 'Update'
+
+    $scope.branchModal = $modal(scope: new_scope, template: 'branch_form.html', backdrop: false, container: 'body')
 
 angular
   .module "companies.company"
