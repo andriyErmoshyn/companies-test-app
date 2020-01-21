@@ -32,6 +32,7 @@ companiesCtrl = ($scope, $modal, Request) ->
       area: branch.area
     }
     request.put().then (response) ->
+      $scope.editBranchModal.hide()
 
   $scope.deleteBranch = (company, branch) ->
     request = Request.one('companies', company.id).one('branches', branch.id)
@@ -41,8 +42,13 @@ companiesCtrl = ($scope, $modal, Request) ->
   $scope.openEditCompanyModal = (company) ->
     new_scope = $scope.$new()
     new_scope.company = company
-
     $scope.editCompanyModal = $modal(scope: new_scope, template: 'edit_company_form.html', backdrop: false, container: 'body')
+
+  $scope.openEditBranchModal = (company, branch) ->
+    new_scope = $scope.$new()
+    new_scope.company = company
+    new_scope.branch = branch
+    $scope.editBranchModal = $modal(scope: new_scope, template: 'edit_branch_form.html', backdrop: false, container: 'body')
 
 angular
   .module "companies.company"
