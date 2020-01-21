@@ -16,4 +16,10 @@ RSpec.describe Company, type: :model do
       expect(Company.not_archived.to_sql).to eq Company.where.not(archived: true).to_sql
     end
   end
+
+  describe 'recently_updated scope' do
+    it 'orders by updated_at: :desc' do
+      expect(Company.recently_updated.to_sql).to eq Company.order(updated_at: :desc).to_sql
+    end
+  end
 end
