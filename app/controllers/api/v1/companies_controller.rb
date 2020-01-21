@@ -4,7 +4,7 @@ module Api
   module V1
     class CompaniesController < ApplicationController
       def index
-        companies = Company.not_archived.recently_updated
+        companies = Company.includes(:branches).not_archived.recently_updated
         json_response companies
       end
 
