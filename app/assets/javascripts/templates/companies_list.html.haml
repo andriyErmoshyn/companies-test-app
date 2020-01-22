@@ -1,4 +1,4 @@
-%div
+%div.companies-list-wrapper
   %table.table.table-bordered
     %thead
       %tr.text-center
@@ -7,7 +7,7 @@
         %th.col-xs-3.text-center Address
         %th.col-xs-4.text-center Actions
     %tbody(ng-repeat='company in companies')
-      %tr
+      %tr.company-row
         %td.col-xs-2 {{company.name}}
         %td.col-xs-3 {{company.description}}
         %td.col-xs-3 {{company.address}}

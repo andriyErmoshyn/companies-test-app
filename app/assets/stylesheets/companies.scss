@@ -1,0 +1,29 @@
+.title-wrapper {
+  margin: 10px 0 20px;
+  padding: 0 0 10px;
+  color: #3aa5ff;
+  font-size: 1.5em;
+}
+.search-form-wrapper {
+  margin-top: 10px;
+}
+.new-company-wrapper {
+  margin: 10px 0 20px;
+
+  button {
+    width: 200px;
+    font-size: 1.2em;
+  }
+}
+.companies-list-wrapper {
+  margin: 20px 0;
+
+  table {
+    thead {
+      background-color: #b5d3f3;
+    }
+    .company-row {
+      background-color: #eeeeee;
+    }
+  }
+}
