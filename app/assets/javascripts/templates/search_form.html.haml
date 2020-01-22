@@ -1,0 +1,10 @@
+.col-xs-12.text-center
+  %form.form-inline
+    .form-group
+      %label Select a field
+      %select.form-control(ng-model='search.field' ng-options='field.name for field in search_fields' selected='false')
+    .form-group
+      %input.form-control(ng-model="search.query")
+    .form-group
+      %button.btn.btn-primary(ng-click='searchItems()' ng-disabled='searchParamsEmpty()') Search
+      %button.btn.btn-default(ng-click='resetSearch()') Reset

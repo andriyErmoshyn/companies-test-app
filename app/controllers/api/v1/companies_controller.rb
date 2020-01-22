@@ -3,10 +3,19 @@
 module Api
   module V1
     class CompaniesController < ApplicationController
+      # rubocop:disable Metrics/AbcSize
       def index
-        companies = Company.includes(:branches).not_archived.recently_updated
+        companies =
+          if params[:q].present?
+            search = Company.not_archived.recently_updated.ransack(JSON.parse(params[:q]))
+            search.result.includes(:branches)
+          else
+            Company.includes(:branches).not_archived.recently_updated
+          end
+
         json_response companies
       end
+      # rubocop:enable Metrics/AbcSize
 
       def create
         company = Company.create!(create_company_params)

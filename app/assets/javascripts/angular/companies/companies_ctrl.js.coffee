@@ -1,8 +1,36 @@
 angular.module("companies.company", [])
 
 companiesCtrl = ($scope, $modal, Request) ->
-  Request.all('companies').getList().then (companies) ->
-    $scope.companies = companies
+  $scope.search = {}
+  $scope.search_fields = [
+    { name: 'All fields', value: 'name_or_description_or_address_or_branches_number_or_branches_area_cont' },
+    { name: 'Company name', value: 'name_cont' },
+    { name: 'Compamny description', value: 'description_cont' },
+    { name: 'Company Address', value: 'address_cont' },
+    { name: 'Branch Number', value: 'branches_number_cont' },
+    { name: 'Branch Area', value: 'branches_area_cont' }
+  ]
+
+  loadCompanies = ->
+    Request.all('companies').getList().then (companies) ->
+      $scope.companies = companies
+
+  loadCompanies()
+
+  $scope.searchParamsEmpty = ->
+    !$scope.search.field || !$scope.search.query
+
+  $scope.resetSearch = ->
+    $scope.search = {}
+    loadCompanies()
+
+  $scope.searchItems = () ->
+    request = Request.all('companies')
+    field_name = $scope.search.field.value
+    query = $scope.search.query
+    search_query = { q: "#{field_name}": query }
+    request.customGETLIST('', search_query).then (companies) ->
+      $scope.companies = companies
 
   $scope.createCompany = (company) ->
     request = Request.all('companies')
@@ -72,7 +100,6 @@ companiesCtrl = ($scope, $modal, Request) ->
       new_scope.branch = branch
       new_scope.title = 'Edit branch'
       new_scope.submitBtnText = 'Update'
-
     $scope.branchModal = $modal(scope: new_scope, template: 'branch_form.html', backdrop: false, container: 'body')
 
 angular

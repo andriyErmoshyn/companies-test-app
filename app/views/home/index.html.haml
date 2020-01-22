@@ -1,5 +1,7 @@
 %h1 Companies Test App
 
 %div(ng-controller='companiesCtrl')
-  %button.btn.btn-info(ng-click='openNewCompanyModal()') Create a company
+  %search-form
+  .col-xs-12.text-right
+    %button.btn.btn-info(ng-click='openNewCompanyModal()') Create a company
   %companies-list
